@@ -1,0 +1,18 @@
+#!/usr/bin/env python3
+from scapy.all import sniff, IP
+
+def process_packet(packet):
+    if packet.haslayer(IP):
+        src_ip = packet[IP].src
+        dst_ip = packet[IP].dst
+        protocol = packet[IP].proto
+        
+        proto_name = "OTHER"
+        if protocol == 6: proto_name = "TCP"
+        elif protocol == 17: proto_name = "UDP"
+        elif protocol == 1: proto_name = "ICMP"
+
+        print(f"[+] [{proto_name}] {src_ip} ----> {dst_ip}")
+
+print("[*] Starting networklyzer... Press Ctrl+C to stop.")
+sniff(prn=process_packet, store=0)
