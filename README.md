@@ -6,3 +6,4 @@ To run the advanced phishing threat tracker locally in your Kali terminal, execu
 ```bash
 python3 advanced_phish_detect.py "https://example.com"
 ```
+# networklyzer
